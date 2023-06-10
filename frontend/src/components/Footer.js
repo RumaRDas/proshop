@@ -9,7 +9,6 @@ function Footer() {
         <Row>
           <Col className="text-center py-3">
             <p>ProShop &copy; {currentYear} </p>
-            <p>hhh</p>
           </Col>
         </Row>
       </Container>
