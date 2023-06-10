@@ -7,7 +7,7 @@ import { FaShoppingCart, FaUser } from "react-icons/fa";
 function Header() {
   return (
     <header>
-      <Navbar bg="secondary" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar bg="secondary" variant="dark" expand="md" collapseOnSelect>
         <Container>
           <NavbarBrand hrf="/">ProShop</NavbarBrand>
           <NavbarToggle aria-controls="basic-navbar-nav" />
