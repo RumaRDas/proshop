@@ -3,6 +3,7 @@ import { Navbar, Nav, Container, NavbarBrand, NavLink } from "react-bootstrap";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { LinkContainer } from "react-router-bootstrap";
 import logo from "../assets/logo.png";
 
 function Header() {
@@ -10,21 +11,28 @@ function Header() {
     <header>
       <Navbar bg="secondary" variant="dark" expand="md" collapseOnSelect>
         <Container>
-          <NavbarBrand hrf="/">
-            <img src={logo} alt="ProShop" />
-            ProShop
-          </NavbarBrand>
+          <LinkContainer>
+            <NavbarBrand to="/">
+              <img src={logo} alt="ProShop" />
+              ProShop
+            </NavbarBrand>
+          </LinkContainer>
+
           <NavbarToggle aria-controls="basic-navbar-nav" />
           <NavbarCollapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <NavLink href="/cart">
-                <FaShoppingCart />
-                Cart
-              </NavLink>
-              <NavLink href="/login">
-                <FaUser />
-                Sign In
-              </NavLink>
+              <LinkContainer to="/cart">
+                <NavLink>
+                  <FaShoppingCart />
+                  Cart
+                </NavLink>
+              </LinkContainer>
+              <LinkContainer to="/login">
+                <NavLink>
+                  <FaUser />
+                  Sign In
+                </NavLink>
+              </LinkContainer>
             </Nav>
           </NavbarCollapse>
         </Container>
