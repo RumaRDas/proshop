@@ -11,8 +11,8 @@ function Header() {
     <header>
       <Navbar bg="secondary" variant="dark" expand="md" collapseOnSelect>
         <Container>
-          <LinkContainer>
-            <NavbarBrand to="/">
+          <LinkContainer to="/">
+            <NavbarBrand>
               <img src={logo} alt="ProShop" />
               ProShop
             </NavbarBrand>
