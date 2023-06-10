@@ -1,5 +1,4 @@
 import React from "react";
-import {} from "react-bootstrap";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 function Rating({ value, text }) {
