@@ -4,4 +4,4 @@
 
 ## backend run "npm run server"
 
-## for running both server "npm run dev"
+## for running both server "npm run dev" from root
