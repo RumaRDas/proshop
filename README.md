@@ -6,6 +6,6 @@
 
 ## for running both server "npm run dev" from root
 
-### for seed data file import to database "nmp run data:import"
+### for seed data file import to database "npm run data:import"
 
-### for seed data file destroy to database "nmp run data:destroy"
+### for seed data file destroy to database "npm run data:destroy"
