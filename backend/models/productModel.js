@@ -17,14 +17,14 @@ const reviewSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
-const productSchema = new mongoose.Schema(
+const productSchema = mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
     name: {
       type: String,
       required: true,
     },
-    img: {
+    image: {
       type: String,
       required: true,
     },
