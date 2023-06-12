@@ -17,3 +17,9 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
   //saving in localstorage with converting js object to json object with JSON.stringfy(localStorage only save json object)
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };
+
+export const removeFromCart = (id) => (dispatch, getState) => {
+  // eslint-disable-next-line no-label-var
+  dispatch({ type: CAR_REMOVE_ITEM, payload: id });
+  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
