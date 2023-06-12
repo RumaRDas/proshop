@@ -12,7 +12,9 @@ import {
   Form,
   Button,
   Card,
+  FormControl,
 } from "react-bootstrap";
+import { FaTrash } from "react-icons/fa";
 
 function CartScreen({ match }) {
   const dispatch = useDispatch();
@@ -25,13 +27,97 @@ function CartScreen({ match }) {
 
   const cart = useSelector((sate) => sate.cart);
   const { cartItems } = cart;
-  // console.log(cartItems);
+  // console.log(cartItems.length);
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty]);
-  return <div>Cart</div>;
+
+  const removeFromCartHandler = (product) => {};
+
+  const checkoutHandler = () => {
+    navigate("/login?redirect=shipping");
+  };
+  return (
+    <Row>
+      <Col md={8}>
+        <h1>Shopping Cart</h1>
+        {cartItems.length === 0 ? (
+          <Message>
+            Yor cart is empty <Link to="/">Go back </Link>
+          </Message>
+        ) : (
+          <ListGroup variant="flush">
+            {cartItems.map((p) => {
+              return (
+                <ListGroup.Item key={p.product}>
+                  <Row>
+                    <Col md={2}>
+                      <Image src={p.image} alt={p.name} fluid rounded />
+                    </Col>
+                    <Col md={3}>
+                      <Link to={`/product/${p.product}`}>{p.name}</Link>
+                    </Col>
+                    <Col md={2}>${p.price}</Col>
+                    <Col md={2}>
+                      <FormControl
+                        as="select"
+                        value={p.qty}
+                        onChange={(e) =>
+                          dispatch(addToCart(p.product, Number(e.target.value)))
+                        }
+                      >
+                        {[...Array(p.countInStock).keys()].map((x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </FormControl>
+                    </Col>
+                    <Col md={2}>
+                      <Button
+                        type="button"
+                        variant="light"
+                        onClick={() => removeFromCartHandler(p.product)}
+                      >
+                        <FaTrash />
+                      </Button>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              );
+            })}
+          </ListGroup>
+        )}
+      </Col>
+      <Col md={4}>
+        <Card>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <h2>
+                Subtotal({cartItems.reduce((acc, d) => acc + d.qty, 0)}) items
+              </h2>
+              $
+              {cartItems
+                .reduce((acc, d) => acc + d.qty * d.price, 0)
+                .toFixed(2)}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button
+                type="button"
+                className="btn-block"
+                disabled={cartItems.length === 0}
+                onClick={checkoutHandler}
+              >
+                Proceed To Checkout
+              </Button>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
+      </Col>
+    </Row>
+  );
 }
 
 export default CartScreen;
