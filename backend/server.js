@@ -12,7 +12,7 @@ import auth from "./routes/auth.js";
 const port = process.env.PORT || 5000;
 connectDB(); //connect to MongoDB
 const app = express();
-
+app.use(express.json({ extended: false }));
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
